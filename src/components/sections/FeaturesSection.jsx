@@ -1,13 +1,13 @@
 // src/components/sections/FeaturesSection.jsx
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
-import { 
-  FaSun, 
-  FaBed, 
-  FaShower, 
-  FaPlane, 
-  FaSwimmingPool, 
-  FaWifi 
+import {
+  FaSun,
+  FaBed,
+  FaShower,
+  FaPlane,
+  FaSwimmingPool,
+  FaWifi
 } from 'react-icons/fa';
 import { MdKitchen, MdBeachAccess } from 'react-icons/md';
 
@@ -74,7 +74,7 @@ const FeaturesSection = () => {
     {
       icon: FaPlane,
       title: "Dobry dojazd",
-      description: "50 km od lotniska w Alicante"
+      description: "~50 km od lotniska w Alicante"
     }
   ];
 
@@ -91,7 +91,7 @@ const FeaturesSection = () => {
             Co oferujemy?
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Nasz dom zapewnia wszystko, czego potrzebujesz do komfortowego wypoczynku
+            Nasz dom to idealne miejsce na relaks – w pełni wyposażony, przytulny i gotowy na Twój komfortowy wypoczynek!
           </p>
         </motion.div>
 
