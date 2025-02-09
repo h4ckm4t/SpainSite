@@ -4,35 +4,36 @@
 import { useEffect, useState } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { FaSun, FaSwimmingPool, FaUmbrellaBeach, FaPlane } from 'react-icons/fa';
+import { FaSun, FaSwimmingPool, FaSwimmer, FaUmbrellaBeach, FaEuroSign } from 'react-icons/fa';
 
 const stats = [
   {
     icon: FaSun,
-    value: 300,
-    suffix: '+',
-    label: 'słonecznych dni w roku',
-    color: 'from-yellow-400 to-orange-500'
+    value: 150,
+    suffix: '€',
+    label: 'Marzec / Kwiecień (za dobę)',
+    color: 'from-yellow-200 to-orange-400'
   },
   {
     icon: FaUmbrellaBeach,
-    value: 500,
-    suffix: 'm',
-    label: 'do pięknej plaży',
-    color: 'from-blue-400 to-blue-600'
+    value: 180,
+    suffix: '€',
+    label: 'Maj / Czerwiec (za dobę)',
+    color: 'from-yellow-400 to-orange-600'
   },
   {
     icon: FaSwimmingPool,
-    value: 2,
-    label: 'baseny do dyspozycji',
-    color: 'from-cyan-400 to-cyan-600'
+    value: 220,
+    suffix: '€',
+    label: 'Lipiec / Sierpień (za dobę)',
+    color: 'from-orange-600 to-yellow-400'
   },
   {
-    icon: FaPlane,
-    value: 40,
-    suffix: 'km',
-    label: 'od lotniska',
-    color: 'from-sky-400 to-sky-600'
+    icon: FaSwimmer,
+    value: 180,
+    suffix: '€',
+    label: 'Wrzesień / Październik (za dobę)',
+    color: 'from-orange-400 to-yellow-200'
   }
 ];
 
@@ -48,7 +49,7 @@ const CountUp = ({ value, duration = 2, suffix = '' }) => {
       const step = (timestamp) => {
         if (!startTimestamp) startTimestamp = timestamp;
         const progress = (timestamp - startTimestamp) / (duration * 1000);
-        
+
         if (progress < 1) {
           setCount(Math.floor(progress * value));
           requestAnimationFrame(step);
@@ -61,7 +62,7 @@ const CountUp = ({ value, duration = 2, suffix = '' }) => {
   }, [inView, value, duration]);
 
   return (
-    <span ref={ref} className="text-4xl font-bold">
+    <span ref={ref} className="text-3xl">
       {count}{suffix}
     </span>
   );
@@ -103,10 +104,10 @@ const StatsSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-light text-gray-900 mb-4">
-            Dlaczego my?
+            Ceny zależą od sezonu
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Idealne miejsce na wymarzony wypoczynek
+            📌 Minimalny czas wynajmu: 5 dni
           </p>
         </motion.div>
 
