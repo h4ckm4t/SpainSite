@@ -1,3 +1,4 @@
+// /src/App.jsx
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -8,13 +9,14 @@ import GallerySection from './components/sections/GallerySection';
 import LocationSection from './components/sections/LocationSection';
 import WeatherSection from './components/sections/WeatherSection';
 import Footer from './components/layout/Footer';
+import StatsSection from './components/sections/StatsSection.jsx';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   setTimeout(() => {
     setIsLoading(false);
-  }, 3000);
+  }, 2000);
 
   return (
     <div className="relative">
@@ -46,13 +48,13 @@ function App() {
                 transition={{ delay: 0.8 }}
                 className="text-2xl font-light"
               >
-                Casa Bella
+                Casa Bonita
               </motion.span>
             </motion.div>
           </motion.div>
         ) : (
           <>
-            
+
             {/* Main content container */}
             <div className="relative z-[100]"> {/* Wyższy z-index niż elementy parallax */}
               <Navbar />
@@ -71,6 +73,9 @@ function App() {
                 </div>
                 <div id="location" className="relative bg-white/90">
                   <LocationSection />
+                </div>
+                <div id="stats" className="relative bg-white/90">
+                  <StatsSection />
                 </div>
               </main>
               <Footer />
