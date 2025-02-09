@@ -1,5 +1,5 @@
 ```markdown
-# Casa Bella - Strona Wakacyjnego Domu w Hiszpanii 🌴🏠
+# Casa Bonita - Strona Wakacyjnego Domu w Hiszpanii 🌴🏠
 
 Nowoczesna strona typu one-pager prezentująca luksusowy dom wakacyjny w Torre de la Horadada, Costa Calida, Hiszpania. Strona zawiera animowaną prezentację, galerię zdjęć, informacje o pogodzie i lokalizacji.
 
@@ -34,7 +34,7 @@ Nowoczesna strona typu one-pager prezentująca luksusowy dom wakacyjny w Torre d
 
 1. Sklonuj repozytorium:
 ```bash
-git clone https://github.com/twojuser/spainsite.git
+git clone https://github.com/h4ckm4t/spainsite.git
 cd spainsite
 ```
 
@@ -143,4 +143,5 @@ Sprawdź czy:
 - Wszystkie zdjęcia są prawidłowo nazwane i umieszczone w folderze public/images
 - Masz zainstalowaną odpowiednią wersję Node.js
 - Wszystkie zależności zostały poprawnie zainstalowane
+- Skopiuj metadane z metadane_do_index :)
 
