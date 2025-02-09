@@ -1,17 +1,18 @@
 // src/components/layout/Navbar.jsx
-import { motion, AnimatePresence } from 'framer-motion';
-import { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { HiMenu, HiX } from 'react-icons/hi';
+
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import { HiMenu, HiX } from "react-icons/hi";
 
 const scrollToSection = (sectionId) => {
   const section = document.getElementById(sectionId);
   if (section) {
-    const navbarHeight = 64; // wysokość nawigacji
+    const navbarHeight = 64;
     const targetPosition = section.offsetTop - navbarHeight;
     window.scrollTo({
       top: targetPosition,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
   }
 };
@@ -23,8 +24,12 @@ const NavLink = ({ children, scrolled, mobile, sectionId, onClick }) => (
       if (onClick) onClick();
     }}
     className={`cursor-pointer font-light transition-colors
-      ${mobile ? 'text-2xl py-4' : 'text-base'}
-      ${scrolled ? 'text-gray-800 hover:text-red-600' : 'text-white hover:text-yellow-400'}
+      ${mobile ? "text-2xl py-4" : "text-base"}
+      ${
+        scrolled
+          ? "text-gray-800 hover:text-red-600"
+          : "text-white hover:text-yellow-400"
+      }
     `}
   >
     {children}
@@ -36,7 +41,7 @@ NavLink.propTypes = {
   scrolled: PropTypes.bool.isRequired,
   mobile: PropTypes.bool,
   sectionId: PropTypes.string.isRequired,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
 };
 
 const Navbar = () => {
@@ -47,9 +52,8 @@ const Navbar = () => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -58,7 +62,7 @@ const Navbar = () => {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         className={`fixed w-full z-50 transition-all duration-300 ${
-          scrolled ? 'bg-white/90 backdrop-blur-md shadow-lg' : 'bg-transparent'
+          scrolled ? "bg-white/90 backdrop-blur-md shadow-lg" : "bg-transparent"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -69,34 +73,47 @@ const Navbar = () => {
               className="flex items-center"
             >
               <span
-                onClick={() => scrollToSection('hero')}
+                onClick={() => scrollToSection("hero")}
                 className={`text-2xl font-light cursor-pointer ${
-                  scrolled ? 'bg-gradient-to-r from-yellow-500 via-red-500 to-red-600 text-transparent bg-clip-text' : 'text-white'
+                  scrolled
+                    ? "bg-gradient-to-r from-yellow-500 via-red-500 to-red-600 text-transparent bg-clip-text"
+                    : "text-white"
                 }`}
               >
-                Casa Bella
+                Casa Bonita
               </span>
             </motion.div>
-            
             <div className="hidden md:flex items-center space-x-8">
-              <NavLink scrolled={scrolled} sectionId="features">O nas</NavLink>
-              <NavLink scrolled={scrolled} sectionId="gallery">Galeria</NavLink>
-              <NavLink scrolled={scrolled} sectionId="location">Lokalizacja</NavLink>
+              <NavLink scrolled={scrolled} sectionId="features">
+                O nas
+              </NavLink>
+              <NavLink scrolled={scrolled} sectionId="gallery">
+                Galeria
+              </NavLink>
+              <NavLink scrolled={scrolled} sectionId="location">
+                Lokalizacja
+              </NavLink>
+              <NavLink scrolled={scrolled} sectionId="stats">
+                Ceny
+              </NavLink>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => scrollToSection('contact')}
+                onClick={() => {
+                  document.dispatchEvent(new Event("openContactPopup"));
+                }}
                 className="bg-gradient-to-r from-yellow-500 via-red-500 to-red-600 text-white px-6 py-2 rounded-full font-light hover:from-yellow-600 hover:via-red-600 hover:to-red-700 transition-all shadow-md hover:shadow-lg"
               >
                 Rezerwuj
               </motion.button>
             </div>
-
             <div className="md:hidden">
               <motion.button
                 whileTap={{ scale: 0.9 }}
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className={`p-2 rounded-full ${scrolled ? 'text-red-600' : 'text-white'}`}
+                className={`p-2 rounded-full ${
+                  scrolled ? "text-red-600" : "text-white"
+                }`}
               >
                 {isMenuOpen ? <HiX size={24} /> : <HiMenu size={24} />}
               </motion.button>
@@ -114,8 +131,8 @@ const Navbar = () => {
             transition={{ type: "spring", damping: 20 }}
             className="fixed inset-0 z-40 md:hidden"
           >
-            <div 
-              className="fixed inset-0 bg-black/50" 
+            <div
+              className="fixed inset-0 bg-black/50"
               onClick={() => setIsMenuOpen(false)}
             />
             <motion.div
@@ -125,21 +142,45 @@ const Navbar = () => {
               exit={{ x: "100%" }}
             >
               <div className="flex flex-col items-center space-y-6 mt-16">
-                <NavLink scrolled={true} mobile={true} sectionId="features" onClick={() => setIsMenuOpen(false)}>
+                <NavLink
+                  scrolled={true}
+                  mobile={true}
+                  sectionId="features"
+                  onClick={() => setIsMenuOpen(false)}
+                >
                   O nas
                 </NavLink>
-                <NavLink scrolled={true} mobile={true} sectionId="gallery" onClick={() => setIsMenuOpen(false)}>
+                <NavLink
+                  scrolled={true}
+                  mobile={true}
+                  sectionId="gallery"
+                  onClick={() => setIsMenuOpen(false)}
+                >
                   Galeria
                 </NavLink>
-                <NavLink scrolled={true} mobile={true} sectionId="location" onClick={() => setIsMenuOpen(false)}>
+                <NavLink
+                  scrolled={true}
+                  mobile={true}
+                  sectionId="location"
+                  onClick={() => setIsMenuOpen(false)}
+                >
                   Lokalizacja
                 </NavLink>
+                <NavLink
+                  scrolled={true}
+                  mobile={true}
+                  sectionId="stats"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Ceny
+                </NavLink>
+                {/* FIXED: Correctly triggers popup */}
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => {
-                    scrollToSection('contact');
-                    setIsMenuOpen(false);
+                    document.dispatchEvent(new Event("openContactPopup"));
+                    setIsMenuOpen(false); // Close mobile menu when opening popup
                   }}
                   className="bg-gradient-to-r from-yellow-500 via-red-500 to-red-600 text-white px-8 py-3 rounded-full text-xl font-light mt-4 shadow-md hover:shadow-lg"
                 >
