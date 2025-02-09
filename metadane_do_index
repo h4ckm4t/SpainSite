@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Casa Bonita</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Luksusowy dom z prywatnym basenem w Torre de la Horadada! Tylko 500m od plaży, 3 sypialnie, idealna na wakacje przez cały rok. Zarezerwuj już dziś!" />
+    <meta name="keywords" content="wynajem  domu Hiszpania, Costa Calida dom do wynajęcia, Torre de la Horadada wakacje, luksusowa willa przy plaży, domek z basenem Hiszpania" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph (Facebook) Meta Tags -->
+    <meta property="og:title" content="Casa Bonita – Luksusowy dom z basenem, Torre de la Horadada 🌞🏝️" />
+    <meta property="og:description" content="Piękny dom z prywatnym basenem i ogrodem, tylko 500m od plaży. Komfort, plaża i relaks przez cały rok! 😍 Zarezerwuj teraz!" />
+    <meta property="og:image" content="https://wakacje.mwnet.us/images/2.jpeg" />
+    <meta property="og:url" content="https://wakacje.mwnet.us" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Casa Bonita – Luksusowy dom w Torre de la Horadada 🏡" />
+    <meta name="twitter:description" content="Wypocznij w słonecznej Hiszpanii! Dom z prywatnym basenem i plażą w zasięgu ręki! ☀️ #Hiszpania #Wynajem" />
+    <meta name="twitter:image" content="https://wakacje.mwnet.us/images/2.jpeg" />
+
+    <!-- Google Analytics (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HG300G1NM7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-HG300G1NM7');
+    </script>
+
+    <script type="module" crossorigin src="/assets/index-BRZDwWBV.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-mZYBBm5-.css">
+  </head>
+
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
