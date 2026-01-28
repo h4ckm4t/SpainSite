@@ -1,4 +1,3 @@
-// /src/data/galleryImages.js
 
 export const galleryImages = [
     {
@@ -10,7 +9,7 @@ export const galleryImages = [
     {
       id: 2,
       url: '/images/2.jpeg',
-      title: 'Basen',
+      title: 'Basen', 
 //      description: 'Prywatny basen z leżakami'
     },
     {

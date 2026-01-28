@@ -25,22 +25,22 @@ const ContactPopup = ({ isVisible, onClose }) => {
               transition={{ delay: 0.2 }}
               className="space-y-6"
             >
-              <a href="tel:+48608480546" className="flex items-center space-x-4 p-4 bg-red-50 rounded-xl hover:bg-red-100 transition-colors">
+              <a href="tel:+48605172154" className="flex items-center space-x-4 p-4 bg-red-50 rounded-xl hover:bg-red-100 transition-colors">
                 <div className="bg-red-500 p-3 rounded-full">
                   <FaPhoneAlt className="text-white" />
                 </div>
                 <div>
                   <p className="text-sm text-gray-600">Zadzwoń do nas</p>
-                  <p className="text-lg text-gray-800">+48 608 480 546</p>
+                  <p className="text-lg text-gray-800">+48 605 172 154</p>
                 </div>
               </a>
-              <a href="mailto:wakacje@mwnet.us" className="flex items-center space-x-4 p-4 bg-yellow-50 rounded-xl hover:bg-yellow-100 transition-colors">
+              <a href="mailto:hello@myapart.me" className="flex items-center space-x-4 p-4 bg-yellow-50 rounded-xl hover:bg-yellow-100 transition-colors">
                 <div className="bg-yellow-500 p-3 rounded-full">
                   <FaEnvelope className="text-white" />
                 </div>
                 <div>
                   <p className="text-sm text-gray-600">Napisz do nas</p>
-                  <p className="text-lg text-gray-800">wakacje@mwnet.us</p>
+                  <p className="text-lg text-gray-800">hello@myapart.me</p>
                 </div>
               </a>
             </motion.div>

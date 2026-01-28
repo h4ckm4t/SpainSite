@@ -81,10 +81,10 @@ const GallerySection = () => {
   }, [isPaused]);
 
   const handleNext = () => {
-    const nextIndex = selectedImage ?
+    const nextIndex = selectedImage ? 
       (galleryImages.findIndex(img => img.id === selectedImage.id) + 1) % galleryImages.length :
       (currentImage + 1) % galleryImages.length;
-
+    
     if (selectedImage) {
       setSelectedImage(galleryImages[nextIndex]);
     } else {
@@ -96,7 +96,7 @@ const GallerySection = () => {
     const prevIndex = selectedImage ?
       (galleryImages.findIndex(img => img.id === selectedImage.id) - 1 + galleryImages.length) % galleryImages.length :
       (currentImage - 1 + galleryImages.length) % galleryImages.length;
-
+    
     if (selectedImage) {
       setSelectedImage(galleryImages[prevIndex]);
     } else {
@@ -133,7 +133,7 @@ const GallerySection = () => {
                 className="w-full h-full object-cover opacity-0"
               />
             </div>
-
+            
             {/* Current Image */}
             <motion.div
               key={currentImage}

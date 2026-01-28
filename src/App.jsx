@@ -1,4 +1,3 @@
-// /src/App.jsx
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -54,7 +53,7 @@ function App() {
           </motion.div>
         ) : (
           <>
-
+            
             {/* Main content container */}
             <div className="relative z-[100]"> {/* Wyższy z-index niż elementy parallax */}
               <Navbar />

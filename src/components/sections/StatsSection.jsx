@@ -9,28 +9,28 @@ import { FaSun, FaSwimmingPool, FaSwimmer, FaUmbrellaBeach, FaEuroSign } from 'r
 const stats = [
   {
     icon: FaSun,
-    value: 150,
+    value: 140,
     suffix: '€',
     label: 'Marzec / Kwiecień (za dobę)',
     color: 'from-yellow-200 to-orange-400'
   },
   {
     icon: FaUmbrellaBeach,
-    value: 180,
+    value: 170,
     suffix: '€',
     label: 'Maj / Czerwiec (za dobę)',
     color: 'from-yellow-400 to-orange-600'
   },
   {
     icon: FaSwimmingPool,
-    value: 220,
+    value: 210,
     suffix: '€',
     label: 'Lipiec / Sierpień (za dobę)',
     color: 'from-orange-600 to-yellow-400'
   },
   {
     icon: FaSwimmer,
-    value: 180,
+    value: 170,
     suffix: '€',
     label: 'Wrzesień / Październik (za dobę)',
     color: 'from-orange-400 to-yellow-200'
@@ -49,7 +49,7 @@ const CountUp = ({ value, duration = 2, suffix = '' }) => {
       const step = (timestamp) => {
         if (!startTimestamp) startTimestamp = timestamp;
         const progress = (timestamp - startTimestamp) / (duration * 1000);
-
+        
         if (progress < 1) {
           setCount(Math.floor(progress * value));
           requestAnimationFrame(step);

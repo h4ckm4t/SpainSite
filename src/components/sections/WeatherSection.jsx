@@ -81,7 +81,7 @@ const WeatherSection = () => {
   useEffect(() => {
     const updateTime = () => {
       const now = new Date();
-      const spainTime = now.toLocaleTimeString('pl-PL', {
+      const spainTime = now.toLocaleTimeString('pl-PL', { 
         timeZone: 'Europe/Madrid',
         hour: '2-digit',
         minute: '2-digit'

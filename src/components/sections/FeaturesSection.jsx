@@ -1,13 +1,13 @@
 // src/components/sections/FeaturesSection.jsx
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
-import {
-  FaSun,
-  FaBed,
-  FaShower,
-  FaPlane,
-  FaSwimmingPool,
-  FaWifi
+import { 
+  FaSun, 
+  FaBed, 
+  FaShower, 
+  FaPlane, 
+  FaSwimmingPool, 
+  FaWifi 
 } from 'react-icons/fa';
 import { MdKitchen, MdBeachAccess } from 'react-icons/md';
 
