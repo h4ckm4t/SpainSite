@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from './components/layout/Navbar';
 import HeroSection from './components/sections/HeroSection';
@@ -9,13 +9,16 @@ import LocationSection from './components/sections/LocationSection';
 import WeatherSection from './components/sections/WeatherSection';
 import Footer from './components/layout/Footer';
 import StatsSection from './components/sections/StatsSection.jsx';
+import { useI18n } from './i18n/I18nProvider.jsx';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const { t } = useI18n();
 
-  setTimeout(() => {
-    setIsLoading(false);
-  }, 2000);
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className="relative">
@@ -39,7 +42,7 @@ function App() {
                 transition={{ delay: 0.5 }}
                 className="text-6xl font-light mb-4"
               >
-                ¡Bienvenidos!
+                {t('loading.welcome')}
               </motion.h1>
               <motion.span
                 initial={{ y: 20, opacity: 0 }}
@@ -47,7 +50,7 @@ function App() {
                 transition={{ delay: 0.8 }}
                 className="text-2xl font-light"
               >
-                Casa Bonita
+                {t('loading.brand')}
               </motion.span>
             </motion.div>
           </motion.div>

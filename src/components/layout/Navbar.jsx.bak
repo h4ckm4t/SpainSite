@@ -74,7 +74,7 @@ const Navbar = () => {
                   scrolled ? 'bg-gradient-to-r from-yellow-500 via-red-500 to-red-600 text-transparent bg-clip-text' : 'text-white'
                 }`}
               >
-                Casa Bonita
+                Casa Ancla
               </span>
             </motion.div>
             

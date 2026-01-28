@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { TbTemperatureCelsius, TbWind } from 'react-icons/tb';
 import { FaSun, FaMoon, FaCloud, FaCloudRain, FaCloudSun, FaSnowflake, FaCloudMeatball, FaBolt } from 'react-icons/fa';
 import { getWeatherData } from '../../utils/weatherApi';
+import { useI18n } from '../../i18n/I18nProvider.jsx';
 
 const getWeatherIcon = (iconName, size = 24) => {
   const icons = {
@@ -22,29 +23,31 @@ const getWeatherIcon = (iconName, size = 24) => {
   return <Icon size={size} />;
 };
 
-const WeatherCard = ({ day, temp, temp_min, icon }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    whileHover={{ scale: 1.05 }}
-    className="bg-white/80 backdrop-blur-sm rounded-xl p-4 flex flex-col items-center shadow-lg"
-  >
-    <span className="text-gray-600">{day}</span>
-    <div className="text-yellow-500 my-2">
-      {getWeatherIcon(icon, 32)}
-    </div>
-    <div className="flex flex-col items-center">
-      <div className="flex items-start">
-        <span className="text-2xl font-light">{temp}</span>
-        <TbTemperatureCelsius className="text-xl" />
+const WeatherCard = ({ day, temp, temp_min, icon }) => {
+  const { t } = useI18n();
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      whileHover={{ scale: 1.05 }}
+      className="bg-white/80 backdrop-blur-sm rounded-xl p-4 flex flex-col items-center shadow-lg"
+    >
+      <span className="text-gray-600">{day}</span>
+      <div className="text-yellow-500 my-2">
+        {getWeatherIcon(icon, 32)}
       </div>
-      <span className="text-sm text-gray-500">
-        min: {temp_min}°C
-      </span>
-    </div>
-  </motion.div>
-);
+      <div className="flex flex-col items-center">
+        <div className="flex items-start">
+          <span className="text-2xl font-light">{temp}</span>
+          <TbTemperatureCelsius className="text-xl" />
+        </div>
+        <span className="text-sm text-gray-500">{t('weather.minLabel', { temp: temp_min })}</span>
+      </div>
+    </motion.div>
+  );
+};
 
 WeatherCard.propTypes = {
   day: PropTypes.string.isRequired,
@@ -58,16 +61,17 @@ const WeatherSection = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [timeInSpain, setTimeInSpain] = useState('');
+  const { locale, t } = useI18n();
 
   useEffect(() => {
     const fetchWeather = async () => {
       try {
-        const data = await getWeatherData();
+        const data = await getWeatherData({ locale });
         setWeatherData(data);
         setLoading(false);
       // eslint-disable-next-line no-unused-vars
       } catch (error) {
-        setError('Nie udało się pobrać danych pogodowych');
+        setError(t('weather.error'));
         setLoading(false);
       }
     };
@@ -76,12 +80,12 @@ const WeatherSection = () => {
     const interval = setInterval(fetchWeather, 1800000); // Odświeżaj co 30 minut
 
     return () => clearInterval(interval);
-  }, []);
+  }, [locale, t]);
 
   useEffect(() => {
     const updateTime = () => {
       const now = new Date();
-      const spainTime = now.toLocaleTimeString('pl-PL', { 
+      const spainTime = now.toLocaleTimeString(locale, {
         timeZone: 'Europe/Madrid',
         hour: '2-digit',
         minute: '2-digit'
@@ -92,7 +96,7 @@ const WeatherSection = () => {
     updateTime();
     const interval = setInterval(updateTime, 60000);
     return () => clearInterval(interval);
-  }, []);
+  }, [locale]);
 
   if (loading) {
     return (
@@ -128,10 +132,10 @@ const WeatherSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-light text-gray-900 mb-4">
-            Pogoda w Torre de la Horadada
+            {t('weather.title')}
           </h2>
           <p className="text-xl text-gray-600">
-            Lokalny czas: {timeInSpain}
+            {t('weather.localTime', { time: timeInSpain })}
           </p>
         </motion.div>
 
@@ -145,7 +149,7 @@ const WeatherSection = () => {
           >
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="text-3xl font-light mb-2">Aktualna pogoda</h3>
+                <h3 className="text-3xl font-light mb-2">{t('weather.current')}</h3>
               </div>
               <div className="text-4xl">
                 {getWeatherIcon(current.icon, 48)}
@@ -158,7 +162,7 @@ const WeatherSection = () => {
               </div>
               <div className="flex items-center mt-2 text-blue-100">
                 <TbWind className="mr-2" />
-                <span>Wiatr: {current.windspeed} km/h</span>
+                <span>{t('weather.wind', { speed: current.windspeed })}</span>
               </div>
             </div>
           </motion.div>
@@ -171,7 +175,7 @@ const WeatherSection = () => {
             className="bg-white rounded-2xl p-8 shadow-lg flex items-center justify-between"
           >
             <div>
-              <h3 className="text-2xl font-light mb-4">Porównanie z Polską</h3>
+              <h3 className="text-2xl font-light mb-4">{t('weather.compareTitle')}</h3>
               <div className="flex items-center space-x-12">
                 <div>
                   <p className="text-gray-600">Torre de la Horadada</p>
@@ -181,7 +185,7 @@ const WeatherSection = () => {
                   </div>
                 </div>
                 <div>
-                  <p className="text-gray-600">{comparePoland.city}</p>
+                  <p className="text-gray-600">{t('weather.polandCity')}</p>
                   <div className="flex items-start">
                     <span className="text-4xl font-light">{comparePoland.temp}</span>
                     <TbTemperatureCelsius className="text-2xl" />

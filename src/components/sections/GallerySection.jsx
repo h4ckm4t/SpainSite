@@ -4,8 +4,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import PropTypes from 'prop-types';
 import { galleryImages } from '../../data/galleryImages';
 import { FaArrowLeft, FaArrowRight, FaExpand } from 'react-icons/fa';
+import { useI18n } from '../../i18n/I18nProvider.jsx';
 
-const ImageModal = ({ image, onClose, onNext, onPrev }) => {
+const ImageModal = ({ image, title, description, onClose, onNext, onPrev, previousAlt, nextAlt }) => {
   if (!image) return null;
 
   return (
@@ -31,24 +32,26 @@ const ImageModal = ({ image, onClose, onNext, onPrev }) => {
         </button>
         <button
           onClick={onPrev}
+          aria-label={previousAlt}
           className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 z-50 bg-black/20 p-4 rounded-full"
         >
           <FaArrowLeft />
         </button>
         <button
           onClick={onNext}
+          aria-label={nextAlt}
           className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 z-50 bg-black/20 p-4 rounded-full"
         >
           <FaArrowRight />
         </button>
         <img
           src={image.url}
-          alt={image.title}
+          alt={title}
           className="w-full h-full object-contain"
         />
         <div className="absolute bottom-4 left-4 right-4 text-white text-center bg-black/20 p-4 rounded-xl">
-          <h3 className="text-xl font-light">{image.title}</h3>
-          <p className="text-sm text-gray-300">{image.description}</p>
+          <h3 className="text-xl font-light">{title}</h3>
+          {description ? <p className="text-sm text-gray-300">{description}</p> : null}
         </div>
       </motion.div>
     </motion.div>
@@ -58,18 +61,25 @@ const ImageModal = ({ image, onClose, onNext, onPrev }) => {
 ImageModal.propTypes = {
   image: PropTypes.shape({
     url: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string
+    id: PropTypes.number.isRequired
   }),
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string,
   onClose: PropTypes.func.isRequired,
   onNext: PropTypes.func.isRequired,
-  onPrev: PropTypes.func.isRequired
+  onPrev: PropTypes.func.isRequired,
+  previousAlt: PropTypes.string.isRequired,
+  nextAlt: PropTypes.string.isRequired
 };
 
 const GallerySection = () => {
   const [currentImage, setCurrentImage] = useState(0);
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedIndex, setSelectedIndex] = useState(null);
   const [isPaused, setIsPaused] = useState(false);
+  const { t } = useI18n();
+
+  const getTitle = (image) => t(`images.${image.id}.title`);
+  const getDescription = (image) => t(`images.${image.id}.description`);
 
   useEffect(() => {
     if (!isPaused) {
@@ -81,27 +91,21 @@ const GallerySection = () => {
   }, [isPaused]);
 
   const handleNext = () => {
-    const nextIndex = selectedImage ? 
-      (galleryImages.findIndex(img => img.id === selectedImage.id) + 1) % galleryImages.length :
-      (currentImage + 1) % galleryImages.length;
-    
-    if (selectedImage) {
-      setSelectedImage(galleryImages[nextIndex]);
-    } else {
-      setCurrentImage(nextIndex);
-    }
+    const nextIndex = selectedIndex !== null
+      ? (selectedIndex + 1) % galleryImages.length
+      : (currentImage + 1) % galleryImages.length;
+
+    if (selectedIndex !== null) setSelectedIndex(nextIndex);
+    else setCurrentImage(nextIndex);
   };
 
   const handlePrev = () => {
-    const prevIndex = selectedImage ?
-      (galleryImages.findIndex(img => img.id === selectedImage.id) - 1 + galleryImages.length) % galleryImages.length :
-      (currentImage - 1 + galleryImages.length) % galleryImages.length;
-    
-    if (selectedImage) {
-      setSelectedImage(galleryImages[prevIndex]);
-    } else {
-      setCurrentImage(prevIndex);
-    }
+    const prevIndex = selectedIndex !== null
+      ? (selectedIndex - 1 + galleryImages.length) % galleryImages.length
+      : (currentImage - 1 + galleryImages.length) % galleryImages.length;
+
+    if (selectedIndex !== null) setSelectedIndex(prevIndex);
+    else setCurrentImage(prevIndex);
   };
 
   return (
@@ -114,10 +118,10 @@ const GallerySection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-light text-gray-900 mb-4">
-            Galeria
+            {t('gallery.title')}
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Zobacz, gdzie spędzisz swoje wymarzone wakacje!
+            {t('gallery.subtitle')}
           </p>
         </motion.div>
 
@@ -144,7 +148,7 @@ const GallerySection = () => {
             >
               <img
                 src={galleryImages[currentImage].url}
-                alt={galleryImages[currentImage].title}
+                alt={getTitle(galleryImages[currentImage])}
                 className="w-full h-full object-cover"
               />
             </motion.div>
@@ -157,8 +161,10 @@ const GallerySection = () => {
             transition={{ delay: 0.3 }}
             className="absolute bottom-0 left-0 right-0 p-8 bg-white/80 backdrop-blur-sm"
           >
-            <h3 className="text-2xl font-light mb-2 text-gray-900">{galleryImages[currentImage].title}</h3>
-            <p className="text-gray-600">{galleryImages[currentImage].description}</p>
+            <h3 className="text-2xl font-light mb-2 text-gray-900">{getTitle(galleryImages[currentImage])}</h3>
+            {getDescription(galleryImages[currentImage]) ? (
+              <p className="text-gray-600">{getDescription(galleryImages[currentImage])}</p>
+            ) : null}
           </motion.div>
 
           {/* Controls */}
@@ -183,7 +189,8 @@ const GallerySection = () => {
 
           <motion.button
             className="absolute top-4 right-4 bg-white/80 backdrop-blur-sm text-gray-900 p-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity shadow-lg"
-            onClick={() => setSelectedImage(galleryImages[currentImage])}
+            onClick={() => setSelectedIndex(currentImage)}
+            aria-label={t('gallery.expandAlt')}
           >
             <FaExpand size={20} />
           </motion.button>
@@ -206,12 +213,16 @@ const GallerySection = () => {
       </div>
 
       <AnimatePresence>
-        {selectedImage && (
+        {selectedIndex !== null && (
           <ImageModal
-            image={selectedImage}
-            onClose={() => setSelectedImage(null)}
+            image={galleryImages[selectedIndex]}
+            title={getTitle(galleryImages[selectedIndex])}
+            description={getDescription(galleryImages[selectedIndex])}
+            onClose={() => setSelectedIndex(null)}
             onNext={handleNext}
             onPrev={handlePrev}
+            previousAlt={t('gallery.previousAlt')}
+            nextAlt={t('gallery.nextAlt')}
           />
         )}
       </AnimatePresence>

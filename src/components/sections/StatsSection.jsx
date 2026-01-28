@@ -5,34 +5,35 @@ import { useEffect, useState } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { FaSun, FaSwimmingPool, FaSwimmer, FaUmbrellaBeach, FaEuroSign } from 'react-icons/fa';
+import { useI18n } from '../../i18n/I18nProvider.jsx';
 
 const stats = [
   {
     icon: FaSun,
     value: 140,
     suffix: '€',
-    label: 'Marzec / Kwiecień (za dobę)',
+    labelKey: 'stats.items.spring1',
     color: 'from-yellow-200 to-orange-400'
   },
   {
     icon: FaUmbrellaBeach,
     value: 170,
     suffix: '€',
-    label: 'Maj / Czerwiec (za dobę)',
+    labelKey: 'stats.items.spring2',
     color: 'from-yellow-400 to-orange-600'
   },
   {
     icon: FaSwimmingPool,
     value: 210,
     suffix: '€',
-    label: 'Lipiec / Sierpień (za dobę)',
+    labelKey: 'stats.items.summer',
     color: 'from-orange-600 to-yellow-400'
   },
   {
     icon: FaSwimmer,
     value: 170,
     suffix: '€',
-    label: 'Wrzesień / Październik (za dobę)',
+    labelKey: 'stats.items.autumn',
     color: 'from-orange-400 to-yellow-200'
   }
 ];
@@ -94,6 +95,8 @@ const StatCard = ({ icon: Icon, value, suffix, label, color }) => {
 };
 
 const StatsSection = () => {
+  const { t } = useI18n();
+
   return (
     <section className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4">
@@ -104,16 +107,16 @@ const StatsSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-light text-gray-900 mb-4">
-            Ceny zależą od sezonu
+            {t('stats.title')}
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            📌 Minimalny czas wynajmu: 5 dni
+            {t('stats.subtitle')}
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {stats.map((stat, index) => (
-            <StatCard key={index} {...stat} />
+            <StatCard key={index} {...stat} label={t(stat.labelKey)} />
           ))}
         </div>
       </div>

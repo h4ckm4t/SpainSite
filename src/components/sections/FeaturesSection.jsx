@@ -10,6 +10,7 @@ import {
   FaWifi 
 } from 'react-icons/fa';
 import { MdKitchen, MdBeachAccess } from 'react-icons/md';
+import { useI18n } from '../../i18n/I18nProvider.jsx';
 
 const FeatureCard = ({ icon: Icon, title, description }) => {
   return (
@@ -35,46 +36,39 @@ FeatureCard.propTypes = {
 };
 
 const FeaturesSection = () => {
+  const { t } = useI18n();
   const features = [
     {
       icon: MdBeachAccess,
-      title: "500m do plaży",
-      description: "Krótki spacer dzieli Cię od pięknej, piaszczystej plaży"
+      key: 'features.items.beach'
     },
     {
       icon: FaSwimmingPool,
-      title: "Prywatny basen",
-      description: "Basen typu salina bez chloru, idealny do relaksu"
+      key: 'features.items.pool'
     },
     {
       icon: FaBed,
-      title: "3 sypialnie",
-      description: "Komfortowe pokoje dla całej rodziny"
+      key: 'features.items.bedrooms'
     },
     {
       icon: FaShower,
-      title: "2 łazienki",
-      description: "W pełni wyposażone, nowoczesne łazienki"
+      key: 'features.items.bathrooms'
     },
     {
       icon: MdKitchen,
-      title: "Wyposażona kuchnia",
-      description: "Wszystko co potrzebne do przygotowania posiłków"
+      key: 'features.items.kitchen'
     },
     {
       icon: FaWifi,
-      title: "Szybki internet",
-      description: "Światłowód 600/600 Mb/s"
+      key: 'features.items.wifi'
     },
     {
       icon: FaSun,
-      title: "Klimatyzacja",
-      description: "Komfortowa temperatura przez cały rok"
+      key: 'features.items.ac'
     },
     {
       icon: FaPlane,
-      title: "Dobry dojazd",
-      description: "~50 km od lotniska w Alicante"
+      key: 'features.items.travel'
     }
   ];
 
@@ -88,10 +82,10 @@ const FeaturesSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-light text-gray-900 mb-4">
-            Co oferujemy?
+            {t('features.title')}
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Nasz dom to idealne miejsce na relaks – w pełni wyposażony, przytulny i gotowy na Twój komfortowy wypoczynek!
+            {t('features.subtitle')}
           </p>
         </motion.div>
 
@@ -100,8 +94,8 @@ const FeaturesSection = () => {
             <FeatureCard
               key={index}
               icon={feature.icon}
-              title={feature.title}
-              description={feature.description}
+              title={t(`${feature.key}.title`)}
+              description={t(`${feature.key}.description`)}
             />
           ))}
         </div>

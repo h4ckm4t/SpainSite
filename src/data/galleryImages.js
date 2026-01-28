@@ -1,87 +1,61 @@
 
+import { withAssetVersion } from '../utils/assetVersion';
+
 export const galleryImages = [
     {
       id: 1,
-      url: '/images/1.jpeg',  // ścieżka względem folderu public
-      title: 'Widok na basen',
-//      description: 'Frontowa część domu'
+      url: withAssetVersion('/images/1.jpeg')
     },
     {
       id: 2,
-      url: '/images/2.jpeg',
-      title: 'Basen', 
-//      description: 'Prywatny basen z leżakami'
+      url: withAssetVersion('/images/2.jpeg')
     },
     {
       id: 3,
-      url: '/images/3.jpeg',
-      title: 'Taras',
-//      description: 'Przestronny salon z dostępem do tarasu'
+      url: withAssetVersion('/images/3.jpeg')
     },
     {
       id: 4,
-      url: '/images/4.jpeg',
-      title: 'Taras',
-//      description: 'Taras z widokiem na basen i ogród'
+      url: withAssetVersion('/images/4.jpeg')
     },
     {
       id: 5,
-      url: '/images/5.jpeg',
-      title: 'Ogród',
-//      description: 'Znajdziesz prysznic w palmach?'
+      url: withAssetVersion('/images/5.jpeg')
     },
     {
       id: 6,
-      url: '/images/6.jpeg',
-      title: 'Prysznic',
-//      description: 'Główna sypialnia z łazienką'
+      url: withAssetVersion('/images/6.jpeg')
     },
     {
       id: 7,
-      url: '/images/7.jpeg',
-      title: 'Salon',
-//      description: 'Główna łazienka z prysznicem'
+      url: withAssetVersion('/images/7.jpeg')
     },
     {
       id: 8,
-      url: '/images/8.jpeg',
-      title: 'Sypialnia',
-//      description: 'Sypialnia z dwoma łóżkami'
+      url: withAssetVersion('/images/8.jpeg')
     },
     {
       id: 9,
-      url: '/images/9.jpeg',
-      title: 'Łazienka 1',
-//      description: 'Taras z widokiem na okolicę'
+      url: withAssetVersion('/images/9.jpeg')
     },
     {
       id: 10,
-      url: '/images/10.jpeg',
-      title: 'Łazienka 2',
-//      description: 'Widok na ogród'
+      url: withAssetVersion('/images/10.jpeg')
     },
     {
       id: 11,
-      url: '/images/11.jpeg',
-      title: 'Bokój B',
-      description: 'Pojedyńcze łóżko'
+      url: withAssetVersion('/images/11.jpeg')
     },
     {
       id: 12,
-      url: '/images/12.jpeg',
-      title: 'Pokój A',
-      description: 'Piętrowe łóżko'
+      url: withAssetVersion('/images/12.jpeg')
     },
     {
       id: 13,
-      url: '/images/13.jpeg',
-      title: 'Zachód Słońca',
-//      description: ''
+      url: withAssetVersion('/images/13.jpeg')
     },
     {
       id: 14,
-      url: '/images/14.jpeg',
-      title: 'Morze Śródziemne',
-//      description: 'Oświetlony basen wieczorem'
+      url: withAssetVersion('/images/14.jpeg')
     }
   ];

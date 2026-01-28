@@ -1,14 +1,17 @@
 // src/components/sections/HeroSection.jsx
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import { useI18n } from '../../i18n/I18nProvider.jsx';
+import { withAssetVersion } from '../../utils/assetVersion';
 const images = [
-  '/public/images/2.jpeg',
-  '/public/images/3.jpeg',
-  '/public/images/13.jpeg'
+  withAssetVersion('/images/2.jpeg'),
+  withAssetVersion('/images/3.jpeg'),
+  withAssetVersion('/images/13.jpeg')
 ];
 const HeroSection = () => {
   const [currentImage, setCurrentImage] = useState(0);
   const [previousImage, setPreviousImage] = useState(images.length - 1);
+  const { t } = useI18n();
   useEffect(() => {
     const timer = setInterval(() => {
       setPreviousImage(currentImage);
@@ -53,7 +56,7 @@ const HeroSection = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="text-5xl md:text-7xl font-light"
           >
-            Wakacje przez cały rok! 🏝️
+            {t('hero.title')}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -61,7 +64,7 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             className="text-xl md:text-2xl font-light max-w-2xl mx-auto"
           >
-            Dom z basenem, zaledwie 500 metrów od piaszczystej plaży
+            {t('hero.subtitle')}
           </motion.p>
         </div>
       </div>

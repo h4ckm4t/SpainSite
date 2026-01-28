@@ -11,7 +11,7 @@ const WARSAW_COORDS = {
   lon: 21.0122
 };
 
-export const getWeatherData = async () => {
+export const getWeatherData = async ({ locale = 'pl-PL' } = {}) => {
   try {
     // Torre de la Horadada - pobieranie prognozy i aktualnej pogody
     const torreResponse = await axios.get(
@@ -42,7 +42,7 @@ export const getWeatherData = async () => {
 
     // Przygotowanie prognozy na 5 dni
     const forecast = torreData.daily.time.slice(0, 5).map((time, index) => ({
-      day: new Date(time).toLocaleDateString('pl-PL', { weekday: 'short' }),
+      day: new Date(time).toLocaleDateString(locale, { weekday: 'short' }),
       temp: Math.round(torreData.daily.temperature_2m_max[index]),
       temp_min: Math.round(torreData.daily.temperature_2m_min[index]),
       icon: getIconForCode(torreData.daily.weathercode[index], isDay)
@@ -59,7 +59,6 @@ export const getWeatherData = async () => {
       current,
       forecast,
       comparePoland: {
-        city: 'Warszawa',
         temp: Math.round(warsawResponse.data.current_weather.temperature)
       }
     };

@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 import { FaPlane, FaUmbrellaBeach, FaStore, FaBus } from 'react-icons/fa';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
+import { useMemo } from 'react';
+import { useI18n } from '../../i18n/I18nProvider.jsx';
 
 // Fix Leaflet default icons
 delete L.Icon.Default.prototype._getIconUrl;
@@ -18,15 +20,35 @@ const center = {
   lng: -0.7619
 };
 
-// Locations
-const places = [
-  { name: 'Nasz dom', position: [center.lat, center.lng], description: '' },
-  { name: 'Plaża del Conde', position: [37.8688, -0.7565], description: 'Piękna piaszczysta plaża' },
-  { name: 'Super Market', position: [37.8727, -0.7643], description: 'Dial Prix' },
-  { name: 'Centrum Gastro/Handlowe', position: [37.8691, -0.7621], description: 'Plaza Nueva' }
-];
-
 const LocationSection = () => {
+  const { t } = useI18n();
+
+  const places = useMemo(
+    () => [
+      {
+        name: t('location.places.house.name'),
+        position: [center.lat, center.lng],
+        description: t('location.places.house.description')
+      },
+      {
+        name: t('location.places.beach.name'),
+        position: [37.8688, -0.7565],
+        description: t('location.places.beach.description')
+      },
+      {
+        name: t('location.places.market.name'),
+        position: [37.8727, -0.7643],
+        description: t('location.places.market.description')
+      },
+      {
+        name: t('location.places.center.name'),
+        position: [37.8691, -0.7621],
+        description: t('location.places.center.description')
+      }
+    ],
+    [t]
+  );
+
   return (
     <section className="py-20 bg-gradient-to-b from-white to-yellow-50 relative">
       <div className="max-w-7xl mx-auto px-4">
@@ -39,10 +61,10 @@ const LocationSection = () => {
           className="text-center mb-16 relative z-10"
         >
           <h2 className="text-4xl font-light text-gray-900 mb-4">
-            Lokalizacja
+            {t('location.title')}
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Torre de la Horadada - malownicza miejscowość na Costa Blanca
+            {t('location.subtitle')}
           </p>
         </motion.div>
 
@@ -89,41 +111,39 @@ const LocationSection = () => {
             className="space-y-6"
           >
             <div className="bg-white p-6 rounded-xl shadow-lg relative z-20">
-              <h3 className="text-xl font-semibold mb-4">W pobliżu</h3>
+              <h3 className="text-xl font-semibold mb-4">{t('location.nearbyTitle')}</h3>
               <ul className="space-y-4">
                 <li className="flex items-center space-x-3">
                   <FaUmbrellaBeach className="text-red-500 text-xl" />
-                  <span>500m do plaży del Conde</span>
+                  <span>{t('location.nearby.beach')}</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   <FaStore className="text-red-500 text-xl" />
-                  <span>3 min do sklepów i restauracji</span>
+                  <span>{t('location.nearby.shops')}</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   <FaBus className="text-red-500 text-xl" />
-                  <span>1 min do przystanku autobusowego</span>
+                  <span>{t('location.nearby.bus')}</span>
                 </li>
               </ul>
             </div>
             <div className="bg-white p-6 rounded-xl shadow-lg relative z-20">
-              <h3 className="text-xl font-semibold mb-4">Dojazd</h3>
+              <h3 className="text-xl font-semibold mb-4">{t('location.travelTitle')}</h3>
               <ul className="space-y-4">
                 <li className="flex items-center space-x-3">
                   <FaPlane className="text-red-500 text-xl" />
-                  <span>~50 km od lotniska w Alicante</span>
+                  <span>{t('location.travel.alicante')}</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   <FaPlane className="text-red-500 text-xl" />
-                  <span>~40 km od lotniska w Murcji</span>
+                  <span>{t('location.travel.murcia')}</span>
                 </li>
               </ul>
             </div>
             <div className="bg-white p-6 rounded-xl shadow-lg relative z-20">
-              <h3 className="text-xl font-semibold mb-4">Okolica</h3>
+              <h3 className="text-xl font-semibold mb-4">{t('location.areaTitle')}</h3>
               <p className="text-gray-600">
-                Torre de la Horadada to urokliwa miejscowość w prowincji Alicante,
-                znana z pięknych plaż i malowniczego portu jachtowego. Idealne miejsce
-                na spokojny wypoczynek z dostępem do wszystkich potrzebnych udogodnień.
+                {t('location.areaText')}
               </p>
             </div>
           </motion.div>

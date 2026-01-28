@@ -4,6 +4,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { HiMenu, HiX } from "react-icons/hi";
+import { useI18n } from "../../i18n/I18nProvider.jsx";
+import { LANGUAGE_OPTIONS } from "../../i18n/translations.js";
 
 const scrollToSection = (sectionId) => {
   const section = document.getElementById(sectionId);
@@ -47,6 +49,7 @@ NavLink.propTypes = {
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { language, setLanguage, t } = useI18n();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -80,22 +83,42 @@ const Navbar = () => {
                     : "text-white"
                 }`}
               >
-                Casa Bonita
+                Casa Ancla
               </span>
             </motion.div>
             <div className="hidden md:flex items-center space-x-8">
               <NavLink scrolled={scrolled} sectionId="features">
-                O nas
+                {t("navbar.about")}
               </NavLink>
               <NavLink scrolled={scrolled} sectionId="gallery">
-                Galeria
+                {t("navbar.gallery")}
               </NavLink>
               <NavLink scrolled={scrolled} sectionId="location">
-                Lokalizacja
+                {t("navbar.location")}
               </NavLink>
               <NavLink scrolled={scrolled} sectionId="stats">
-                Ceny
+                {t("navbar.prices")}
               </NavLink>
+              <div className="flex items-center gap-2">
+                {LANGUAGE_OPTIONS.map(({ code, label, flag }) => (
+                  <button
+                    key={code}
+                    type="button"
+                    onClick={() => setLanguage(code)}
+                    aria-label={label}
+                    title={label}
+                    className={`text-lg leading-none rounded-md px-2 py-1 transition-all ${
+                      language === code
+                        ? "ring-2 ring-red-500 bg-white/70"
+                        : scrolled
+                          ? "hover:bg-gray-100"
+                          : "hover:bg-white/20"
+                    }`}
+                  >
+                    {flag}
+                  </button>
+                ))}
+              </div>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -104,7 +127,7 @@ const Navbar = () => {
                 }}
                 className="bg-gradient-to-r from-yellow-500 via-red-500 to-red-600 text-white px-6 py-2 rounded-full font-light hover:from-yellow-600 hover:via-red-600 hover:to-red-700 transition-all shadow-md hover:shadow-lg"
               >
-                Rezerwuj
+                {t("navbar.book")}
               </motion.button>
             </div>
             <div className="md:hidden">
@@ -142,13 +165,32 @@ const Navbar = () => {
               exit={{ x: "100%" }}
             >
               <div className="flex flex-col items-center space-y-6 mt-16">
+                <div className="flex items-center gap-2">
+                  {LANGUAGE_OPTIONS.map(({ code, label, flag }) => (
+                    <button
+                      key={code}
+                      type="button"
+                      onClick={() => {
+                        setLanguage(code);
+                        setIsMenuOpen(false);
+                      }}
+                      aria-label={label}
+                      title={label}
+                      className={`text-2xl leading-none rounded-md px-3 py-2 transition-all ${
+                        language === code ? "ring-2 ring-red-500 bg-white" : "hover:bg-white/70"
+                      }`}
+                    >
+                      {flag}
+                    </button>
+                  ))}
+                </div>
                 <NavLink
                   scrolled={true}
                   mobile={true}
                   sectionId="features"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  O nas
+                  {t("navbar.about")}
                 </NavLink>
                 <NavLink
                   scrolled={true}
@@ -156,7 +198,7 @@ const Navbar = () => {
                   sectionId="gallery"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Galeria
+                  {t("navbar.gallery")}
                 </NavLink>
                 <NavLink
                   scrolled={true}
@@ -164,7 +206,7 @@ const Navbar = () => {
                   sectionId="location"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Lokalizacja
+                  {t("navbar.location")}
                 </NavLink>
                 <NavLink
                   scrolled={true}
@@ -172,7 +214,7 @@ const Navbar = () => {
                   sectionId="stats"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Ceny
+                  {t("navbar.prices")}
                 </NavLink>
                 {/* FIXED: Correctly triggers popup */}
                 <motion.button
@@ -184,7 +226,7 @@ const Navbar = () => {
                   }}
                   className="bg-gradient-to-r from-yellow-500 via-red-500 to-red-600 text-white px-8 py-3 rounded-full text-xl font-light mt-4 shadow-md hover:shadow-lg"
                 >
-                  Rezerwuj
+                  {t("navbar.book")}
                 </motion.button>
               </div>
             </motion.div>
