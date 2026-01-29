@@ -31,7 +31,7 @@ export const translations = {
     },
     hero: {
       title: 'Wakacje przez cały rok! 🏝️',
-      subtitle: 'Dom z basenem, zaledwie 500 metrów od piaszczystej plaży'
+      subtitle: 'Dom z basenem, zaledwie 450 metrów od piaszczystej plaży'
     },
     features: {
       title: 'Co oferujemy?',
@@ -39,7 +39,7 @@ export const translations = {
         'Nasz dom to idealne miejsce na relaks – w pełni wyposażony, przytulny i gotowy na Twój komfortowy wypoczynek!',
       items: {
         beach: {
-          title: '500m do plaży',
+          title: '450m do plaży',
           description: 'Krótki spacer dzieli Cię od pięknej, piaszczystej plaży'
         },
         pool: {
@@ -84,7 +84,7 @@ export const translations = {
       subtitle: 'Torre de la Horadada - malownicza miejscowość na Costa Blanca',
       nearbyTitle: 'W pobliżu',
       nearby: {
-        beach: '500m do plaży del Conde',
+        beach: '450m do plaży del Conde',
         shops: '3 min do sklepów i restauracji',
         bus: '1 min do przystanku autobusowego'
       },
@@ -171,7 +171,7 @@ export const translations = {
     },
     hero: {
       title: 'Holidays all year round! 🏝️',
-      subtitle: 'A house with a pool just 500 meters from a sandy beach'
+      subtitle: 'A house with a pool just 450 meters from a sandy beach'
     },
     features: {
       title: 'What we offer',
@@ -179,7 +179,7 @@ export const translations = {
         'Our house is the perfect place to relax — fully equipped, cozy, and ready for your comfortable stay!',
       items: {
         beach: {
-          title: '500m to the beach',
+          title: '450m to the beach',
           description: 'A short walk takes you to a beautiful sandy beach'
         },
         pool: {
@@ -224,7 +224,7 @@ export const translations = {
       subtitle: 'Torre de la Horadada — a charming town on the Costa Blanca',
       nearbyTitle: 'Nearby',
       nearby: {
-        beach: '500m to Playa del Conde',
+        beach: '450m to Playa del Conde',
         shops: '3 min to shops and restaurants',
         bus: '1 min to the bus stop'
       },
@@ -311,7 +311,7 @@ export const translations = {
     },
     hero: {
       title: 'Urlaub das ganze Jahr! 🏝️',
-      subtitle: 'Ein Haus mit Pool, nur 500 Meter vom Sandstrand entfernt'
+      subtitle: 'Ein Haus mit Pool, nur 450 Meter vom Sandstrand entfernt'
     },
     features: {
       title: 'Was wir bieten',
@@ -319,7 +319,7 @@ export const translations = {
         'Unser Haus ist der perfekte Ort zum Entspannen — voll ausgestattet, gemütlich und bereit für euren Komfort!',
       items: {
         beach: {
-          title: '500 m zum Strand',
+          title: '450 m zum Strand',
           description: 'Ein kurzer Spaziergang führt euch zu einem schönen Sandstrand'
         },
         pool: {
@@ -364,7 +364,7 @@ export const translations = {
       subtitle: 'Torre de la Horadada — ein malerischer Ort an der Costa Blanca',
       nearbyTitle: 'In der Nähe',
       nearby: {
-        beach: '500 m bis Playa del Conde',
+        beach: '450 m bis Playa del Conde',
         shops: '3 Min. zu Geschäften und Restaurants',
         bus: '1 Min. zur Bushaltestelle'
       },
@@ -451,7 +451,7 @@ export const translations = {
     },
     hero: {
       title: '¡Vacaciones todo el año! 🏝️',
-      subtitle: 'Casa con piscina a solo 500 metros de una playa de arena'
+      subtitle: 'Casa con piscina a solo 450 metros de una playa de arena'
     },
     features: {
       title: 'Qué ofrecemos',
@@ -459,7 +459,7 @@ export const translations = {
         'Nuestra casa es el lugar perfecto para relajarse — totalmente equipada, acogedora y lista para una estancia cómoda.',
       items: {
         beach: {
-          title: '500 m a la playa',
+          title: '450 m a la playa',
           description: 'Un corto paseo te lleva a una hermosa playa de arena'
         },
         pool: {
@@ -504,7 +504,7 @@ export const translations = {
       subtitle: 'Torre de la Horadada — un encantador pueblo en la Costa Blanca',
       nearbyTitle: 'Cerca',
       nearby: {
-        beach: '500 m a Playa del Conde',
+        beach: '450 m a Playa del Conde',
         shops: '3 min a tiendas y restaurantes',
         bus: '1 min a la parada de autobús'
       },
